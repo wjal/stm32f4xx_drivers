@@ -1,0 +1,18 @@
+# Build output
+Debug/
+Release/
+
+# STM32CubeIDE / Eclipse machine-specific files
+.settings/
+*.launch
+
+# Compiled artifacts (safety net if built outside Debug/)
+*.o
+*.su
+*.d
+*.cyclo
+*.elf
+*.bin
+*.hex
+*.map
+*.list
