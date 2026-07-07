@@ -1,5 +1,5 @@
 /*
- * 002_led_button.c
+ * 010_010_i2c_master_tx_testing.c
  *
  *  Created on: Apr 25, 2026
  *      Author: jameslittle
@@ -27,7 +27,7 @@ void delay(void){
 
 I2C_Handle_t I2C_handle;
 
-void IC2_1_gpio_init(void){
+void I2C_1_gpio_init(void){
 	GPIO_Handle_t GPIO_i2c = {0};
 
 
@@ -74,7 +74,7 @@ int main(void){
 
 	char user_data[] = "Hello Universe!";
 
-	IC2_1_gpio_init();
+	I2C_1_gpio_init();
 
 	I2C_1_init();
 
@@ -85,7 +85,7 @@ int main(void){
 	while(1){
 		while(!(GPIO_read_input_pin(GPIOA, GPIO_PIN_0)));
 		delay();
-		I2C_MasterSendData(&I2C_handle, (uint8_t*)user_data, strlen((char*)user_data), SLAVE_ADDRESS);
+		I2C_MasterSendData(&I2C_handle, (uint8_t*)user_data, strlen((char*)user_data), SLAVE_ADDRESS, I2C_DISABLE_SR);
 	}
 	return 0;
 };

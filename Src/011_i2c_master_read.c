@@ -30,7 +30,7 @@ void delay(void){
 
 I2C_Handle_t I2C_handle;
 
-void IC2_1_gpio_init(void){
+void I2C_1_gpio_init(void){
 	GPIO_Handle_t GPIO_i2c = {0};
 
 
@@ -78,7 +78,7 @@ int main(void){
 	uint8_t rx_buff[32];
 	uint8_t length;
 
-	IC2_1_gpio_init();
+	I2C_1_gpio_init();
 	I2C_1_init();
 	I2C_Peripheral_ctrl(I2C_1, ENABLE);
 	I2C_ManageAcking(I2C_1, ENABLE);

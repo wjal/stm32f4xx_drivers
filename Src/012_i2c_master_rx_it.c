@@ -31,7 +31,7 @@ void delay(void){
 
 I2C_Handle_t I2C_handle;
 
-void IC2_1_gpio_init(void){
+void I2C_1_gpio_init(void){
 	GPIO_Handle_t GPIO_i2c = {0};
 
 
@@ -79,7 +79,7 @@ int main(void){
 	uint8_t rx_buff[32];
 	uint8_t length;
 	printf("Application is starting...\n");
-	IC2_1_gpio_init();
+	I2C_1_gpio_init();
 	I2C_1_init();
 
 	//I2C_ IRQ CONFIGS
