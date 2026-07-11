@@ -96,15 +96,15 @@ int main(void){
 	I2C_1_gpio_init();
 	I2C_1_init();
 
+
+	I2C_Peripheral_ctrl(I2C_1, ENABLE);
+	I2C_ManageAcking(I2C_1, ENABLE);
+
 	//I2C_ IRQ CONFIGS
 	I2C_IRQConfig(IRQ_NO_I2C1_EV, ENABLE);
 	I2C_IRQConfig(IRQ_NO_I2C1_ER, ENABLE);
 
 	I2C_SlaveManageCallbackEvents(I2C_1,ENABLE);
-
-	I2C_Peripheral_ctrl(I2C_1, ENABLE);
-	I2C_ManageAcking(I2C_1, ENABLE);
-
 	while(1){
 
 	}
@@ -133,7 +133,10 @@ void I2C_ApplicationEventCallback(I2C_Handle_t *pI2CHandle, uint8_t app_event)
 		//if the current active code is 0x52 then dont invalidate
 		if(!(command_code == 0x52)){
 			command_code = 0xff;
-		}
+		}else if(w_ptr > 0){
+	        //last byte was loaded into DR but never transmitted (master NACKed chunk end)
+	        w_ptr--;
+	    }
 		//reset the cnt variable because its end of transmission
 		count = 0;
 		//Slave concludes it sent all the bytes when w_ptr reaches data_len

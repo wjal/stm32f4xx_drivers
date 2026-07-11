@@ -408,9 +408,9 @@ typedef struct{
 #define SPI3_PCLK_EN()		(RCC->APB1ENR|=(1 << 15))
 #define SPI4_PCLK_EN()		(RCC->APB2ENR|=(1 << 13))
 
-#define SPI1_PCLK_DIS()		(RCC->APB2ENR|=~(1 << 12))
-#define SPI2_PCLK_DIS()		(RCC->APB1ENR|=~(1 << 14))
-#define SPI3_PCLK_DIS()		(RCC->APB1ENR|=~(1 << 15))
+#define SPI1_PCLK_DIS()		(RCC->APB2ENR&=~(1 << 12))
+#define SPI2_PCLK_DIS()		(RCC->APB1ENR&=~(1 << 14))
+#define SPI3_PCLK_DIS()		(RCC->APB1ENR&=~(1 << 15))
 #define SPI4_PCLK_DIS()		(RCC->APB2ENR|=~(1 << 13))
 
 #define SPI_1_RESET()		do {(RCC->APB2RSTR|= (1 << 12)); (RCC->APB2RSTR&= ~(1 << 12));}while(0)
@@ -528,9 +528,9 @@ typedef struct {
 #define I2C2_PCLK_EN()		(RCC->APB1ENR|=(1 << 22))
 #define I2C3_PCLK_EN()		(RCC->APB1ENR|=(1 << 23))
 
-#define I2C1_PCLK_DIS()		(RCC->APB1ENR|=~(1 << 21))
-#define I2C2_PCLK_DIS()		(RCC->APB1ENR|=~(1 << 22))
-#define I2C3_PCLK_DIS()		(RCC->APB1ENR|=~(1 << 23))
+#define I2C1_PCLK_DIS()		(RCC->APB1ENR&=~(1 << 21))
+#define I2C2_PCLK_DIS()		(RCC->APB1ENR&=~(1 << 22))
+#define I2C3_PCLK_DIS()		(RCC->APB1ENR&=~(1 << 23))
 
 
 #define I2C_1_OFFSET 		0x5400UL
@@ -546,9 +546,9 @@ typedef struct {
 #define	I2C_2				((I2C_REG_DEF_t*)I2C_2_BASE_ADDRESS)
 #define I2C_3				((I2C_REG_DEF_t*)I2C_3_BASE_ADDRESS)
 
-#define I2C_1_RESET()		do{(RCC->APB1ENR|=(1 << 21)); (RCC->APB1ENR|=~(1 << 21));}while(0)
-#define I2C_2_RESET()		do{(RCC->APB1ENR|=(1 << 22)); (RCC->APB1ENR|=~(1 << 22));}while(0)
-#define I2C_3_RESET()		do{(RCC->APB1ENR|=(1 << 23)); (RCC->APB1ENR|=~(1 << 23));}while(0)
+#define I2C_1_RESET()		do{(RCC->APB1RSTR|=(1 << 21)); (RCC->APB1RSTR&=~(1 << 21));}while(0)
+#define I2C_2_RESET()		do{(RCC->APB1RSTR|=(1 << 22)); (RCC->APB1RSTR&=~(1 << 22));}while(0)
+#define I2C_3_RESET()		do{(RCC->APB1RSTR|=(1 << 23)); (RCC->APB1RSTR&=~(1 << 23));}while(0)
 
 /*
  * I2C_REGISTER_BIT_POSITIONS
